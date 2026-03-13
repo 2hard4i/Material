@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eukaryotic vs Prokaryotic Cells</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#eef2f7;
+margin:40px;
+text-align:center;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+width:300px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+img{
+width:200px;
+margin-bottom:10px;
+}
+
+button{
+margin-top:10px;
+padding:8px 15px;
+border:none;
+background:#3498db;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#217dbb;
+}
+
+.hidden{
+display:none;
+}
+
+table{
+margin-top:40px;
+margin-left:auto;
+margin-right:auto;
+border-collapse:collapse;
+background:white;
+}
+
+th, td{
+border:1px solid #ccc;
+padding:10px 15px;
+}
+
+th{
+background:#3498db;
+color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Understanding Cell Types</h1>
+
+<p>All living organisms are made of cells. There are two main types of cells.</p>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Prokaryotic Cells</h2>
+
+<img src="prokaryotic-cell.png">
+
+<p>Simple cells that do not have a nucleus.</p>
+
+<button onclick="showInfo('pro')">Learn More</button>
+
+<p id="pro" class="hidden">
+Prokaryotic cells are small and simple. Their DNA floats freely in the cell. 
+Most bacteria are prokaryotic cells.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Eukaryotic Cells</h2>
+
+<img src="eukaryotic-cell.png">
+
+<p>More complex cells with a nucleus.</p>
+
+<button onclick="showInfo('eu')">Learn More</button>
+
+<p id="eu" class="hidden">
+Eukaryotic cells contain a nucleus and organelles such as mitochondria. 
+Animals, plants, fungi, and protists are made of these cells.
+</p>
+
+</div>
+
+</div>
+
+<h2>Quick Comparison</h2>
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>Prokaryotic</th>
+<th>Eukaryotic</th>
+</tr>
+
+<tr>
+<td>Nucleus</td>
+<td>No nucleus</td>
+<td>Has nucleus</td>
+</tr>
+
+<tr>
+<td>Size</td>
+<td>Small</td>
+<td>Larger</td>
+</tr>
+
+<tr>
+<td>Complexity</td>
+<td>Simple</td>
+<td>Complex</td>
+</tr>
+
+<tr>
+<td>Examples</td>
+<td>Bacteria</td>
+<td>Animals, Plants</td>
+</tr>
+
+</table>
+
+<script>
+
+function showInfo(id){
+document.getElementById(id).classList.toggle("hidden");
+}
+
+</script>
+
+</body>
+</html>
