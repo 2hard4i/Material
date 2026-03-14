@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Atomic Nucleus vs Cell Nucleus</title>
+
+<style>
+
+body{
+font-family:Arial, sans-serif;
+margin:0;
+background:#f3f6fb;
+line-height:1.6;
+}
+
+header{
+background:#1f3c5b;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px;
+}
+
+section{
+margin-bottom:50px;
+}
+
+h2{
+color:#1f3c5b;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+flex:1 1 300px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+button{
+background:#1f3c5b;
+color:white;
+border:none;
+padding:8px 14px;
+margin-top:10px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2e5c8a;
+}
+
+.learnmore{
+display:none;
+background:#eef3f9;
+padding:10px;
+border-radius:5px;
+margin-top:10px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+background:white;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:12px;
+text-align:center;
+}
+
+th{
+background:#1f3c5b;
+color:white;
+}
+
+.timeline{
+border-left:4px solid #1f3c5b;
+padding-left:20px;
+}
+
+.event{
+margin-bottom:20px;
+}
+
+.quiz{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.answer{
+display:block;
+margin:8px 0;
+}
+
+.result{
+font-weight:bold;
+margin-top:10px;
+}
+
+footer{
+background:#1f3c5b;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Atomic Nucleus vs Cell Nucleus</h1>
+<p>Understanding their meaning, history, and differences</p>
+</header>
+
+<div class="container">
+
+<section>
+
+<h2>Meaning and Structure</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Atomic Nucleus</h3>
+<p>The atomic nucleus is the extremely dense center of an atom.</p>
+
+<button onclick="toggle('atomicMore')">Learn More</button>
+
+<div id="atomicMore" class="learnmore">
+It contains protons and neutrons and holds almost all the mass of the atom. 
+The particles are held together by the strong nuclear force.
+</div>
+
+</div>
+
+<div class="card">
+<h3>Cell Nucleus</h3>
+<p>The cell nucleus is an organelle found inside eukaryotic cells.</p>
+
+<button onclick="toggle('cellMore')">Learn More</button>
+
+<div id="cellMore" class="learnmore">
+It stores DNA and controls activities such as cell growth, protein production, 
+and reproduction.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>History of Discovery</h2>
+
+<div class="timeline">
+
+<div class="event">
+<strong>1831</strong> – Robert Brown discovered the nucleus inside plant cells 
+while studying orchids under a microscope.
+</div>
+
+<div class="event">
+<strong>1911</strong> – Ernest Rutherford discovered the atomic nucleus 
+through the famous <a href="https://chem.libretexts.org/Bookshelves/Introductory_Chemistry/Introductory_Chemistry_(CK-12)/04%3A_Atomic_Structure/4.14%3A_Gold_Foil_Experiment
+
+">gold foil experiment.</a>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>Key Differences</h2>
+
+<table>
+
+<tr>
+<th>Feature</th>
+<th>Atomic Nucleus</th>
+<th>Cell Nucleus</th>
+</tr>
+
+<tr>
+<td>Scientific Field</td>
+<td>Physics / Chemistry</td>
+<td>Biology</td>
+</tr>
+
+<tr>
+<td>Main Role</td>
+<td>Contains protons and neutrons</td>
+<td>Stores DNA and controls cell</td>
+</tr>
+
+<tr>
+<td>Size</td>
+<td>~10⁻¹⁵ meters</td>
+<td>~10⁻⁶ meters</td>
+</tr>
+
+<tr>
+<td>Discovered By</td>
+<td>Ernest Rutherford</td>
+<td>Robert Brown</td>
+</tr>
+
+<tr>
+<td>Discovered In</td>
+<td>1911</td>
+<td>1831</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<section>
+
+<h2>Knowledge Quiz</h2>
+
+<div class="quiz">
+
+<p id="question"></p>
+
+<div id="answers"></div>
+
+<p class="result" id="result"></p>
+
+<button onclick="nextQuestion()">Next Question</button>
+
+</div>
+
+</section>
+
+</div>
+
+<footer>
+Interactive Science Learning Page
+</footer>
+
+<script>
+
+function toggle(id){
+let x=document.getElementById(id);
+x.style.display = x.style.display==="block" ? "none" : "block";
+}
+
+let questions=[
+
+{
+q:"Who discovered the cell nucleus?",
+a:["Robert Brown","Ernest Rutherford","Isaac Newton","Charles Darwin"],
+correct:0
+},
+
+{
+q:"Who discovered the atomic nucleus?",
+a:["Albert Einstein","Ernest Rutherford","Galileo","Robert Hooke"],
+correct:1
+},
+
+{
+q:"What does the cell nucleus contain?",
+a:["Protons","DNA","Electrons","Energy"],
+correct:1
+},
+
+{
+q:"Which structure contains protons and neutrons?",
+a:["Cell nucleus","Atomic nucleus","Mitochondria","Ribosome"],
+correct:1
+},
+
+{
+q:"Which nucleus controls cell activities?",
+a:["Atomic nucleus","Cell nucleus"],
+correct:1
+}
+
+]
+
+let index=0;
+
+function loadQuestion(){
+
+document.getElementById("result").innerHTML="";
+
+let q=questions[index];
+
+document.getElementById("question").innerHTML=q.q;
+
+let answersHTML="";
+
+q.a.forEach((choice,i)=>{
+answersHTML+=`<button class="answer" onclick="check(${i})">${choice}</button>`;
+});
+
+document.getElementById("answers").innerHTML=answersHTML;
+
+}
+
+function check(i){
+
+let q=questions[index];
+
+if(i===q.correct){
+document.getElementById("result").innerHTML="Correct!";
+}else{
+document.getElementById("result").innerHTML="Incorrect.";
+}
+
+}
+
+function nextQuestion(){
+
+index++;
+
+if(index>=questions.length){
+index=0;
+}
+
+loadQuestion();
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
