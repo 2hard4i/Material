@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Atom and Nucleus Interactive Quiz</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0f2027;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+h1{
+font-size:38px;
+}
+
+.visual{
+margin:40px auto;
+width:220px;
+height:220px;
+position:relative;
+}
+
+.nucleus{
+width:60px;
+height:60px;
+background:red;
+border-radius:50%;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+box-shadow:0 0 25px red;
+}
+
+.orbit{
+width:200px;
+height:200px;
+border:2px dashed white;
+border-radius:50%;
+position:absolute;
+top:10px;
+left:10px;
+}
+
+.electron{
+width:12px;
+height:12px;
+background:cyan;
+border-radius:50%;
+position:absolute;
+animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg) translateX(100px);}
+100%{transform:rotate(360deg) translateX(100px);}
+}
+
+.quiz-box{
+margin-top:30px;
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:15px;
+width:500px;
+margin-left:auto;
+margin-right:auto;
+}
+
+button{
+margin:10px;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#ffcc00;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffd633;
+}
+
+#score{
+margin-top:20px;
+font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Atom vs Nucleus Learning Quiz</h1>
+
+<div class="visual">
+
+<div class="orbit">
+<div class="electron"></div>
+</div>
+
+<div class="nucleus"></div>
+
+</div>
+
+<div class="quiz-box">
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<div id="feedback"></div>
+
+<button onclick="nextQuestion()">Next Question</button>
+
+<div id="score"></div>
+
+</div>
+
+<script>
+
+let questions=[
+
+{
+q:"What particles are found inside the nucleus?",
+a:["Protons and Neutrons","Electrons only","Neutrons and Electrons","Photons"],
+correct:0,
+explain:"The nucleus contains protons (positive charge) and neutrons (neutral)."
+},
+
+{
+q:"Why does the nucleus have a positive charge?",
+a:["Because of electrons","Because of protons","Because of neutrons","Because of energy"],
+correct:1,
+explain:"Protons have positive charge, which makes the nucleus positive."
+},
+
+{
+q:"What particle moves around the nucleus?",
+a:["Electron","Proton","Neutron","Photon"],
+correct:0,
+explain:"Electrons move in energy regions around the nucleus."
+},
+
+{
+q:"Why do atoms interact chemically?",
+a:["Because of neutrons","Because of electron arrangement","Because of gravity","Because of temperature"],
+correct:1,
+explain:"Chemical behavior depends on electron arrangement."
+},
+
+{
+q:"Where is most of the mass of an atom located?",
+a:["Electron cloud","Nucleus","Orbit path","Energy shell"],
+correct:1,
+explain:"Protons and neutrons hold almost all atomic mass."
+},
+
+{
+q:"Why do electrons stay near the nucleus?",
+a:["Magnetic force","Gravity","Electrostatic attraction","Nuclear force"],
+correct:2,
+explain:"Positive nucleus attracts negative electrons."
+},
+
+{
+q:"Which particle determines the element type?",
+a:["Electron","Neutron","Proton","Photon"],
+correct:2,
+explain:"Number of protons defines the element."
+},
+
+{
+q:"Why do neutrons exist in the nucleus?",
+a:["To stabilize the nucleus","To attract electrons","To create electricity","To increase orbit speed"],
+correct:0,
+explain:"Neutrons reduce repulsion between protons."
+},
+
+{
+q:"What force holds protons and neutrons together?",
+a:["Gravity","Strong nuclear force","Magnetism","Friction"],
+correct:1,
+explain:"The strong nuclear force binds the nucleus."
+},
+
+{
+q:"Why is the atom mostly empty space?",
+a:["Electrons are tiny and far from nucleus","Atoms are hollow","Protons disappear","Electrons dissolve"],
+correct:0,
+explain:"The nucleus is tiny compared to electron distance."
+}
+
+]
+
+let current=0
+let score=0
+
+function showQuestion(){
+
+let q=questions[current]
+
+document.getElementById("question").innerText=q.q
+
+let answersHTML=""
+
+q.a.forEach((choice,index)=>{
+answersHTML+=`<button onclick="checkAnswer(${index})">${choice}</button>`
+})
+
+document.getElementById("answers").innerHTML=answersHTML
+
+document.getElementById("feedback").innerHTML=""
+}
+
+function checkAnswer(index){
+
+let q=questions[current]
+
+if(index===q.correct){
+score++
+document.getElementById("feedback").innerHTML="<p style='color:lightgreen'>Correct! "+q.explain+"</p>"
+}else{
+document.getElementById("feedback").innerHTML="<p style='color:red'>Incorrect. "+q.explain+"</p>"
+}
+
+document.getElementById("score").innerText="Score: "+score
+}
+
+function nextQuestion(){
+
+current++
+
+if(current>=questions.length){
+document.getElementById("question").innerText="Quiz Finished!"
+document.getElementById("answers").innerHTML=""
+document.getElementById("feedback").innerHTML="Final Score: "+score+" / "+questions.length
+return
+}
+
+showQuestion()
+
+}
+
+showQuestion()
+
+</script>
+
+</body>
+</html>
