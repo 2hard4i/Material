@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemical Bonding Animation</title>
+</head>
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+h1{
+margin-top:20px;
+}
+
+.controls button{
+padding:10px 18px;
+margin:10px;
+border:none;
+background:#38bdf8;
+border-radius:5px;
+cursor:pointer;
+}
+
+.scene{
+position:relative;
+height:300px;
+margin-top:40px;
+}
+
+.atom{
+width:80px;
+height:80px;
+border-radius:50%;
+background:#22c55e;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+position:absolute;
+top:100px;
+transition:1s;
+}
+
+#atom1{
+left:25%;
+}
+
+#atom2{
+right:25%;
+}
+
+.electron{
+width:20px;
+height:20px;
+background:#facc15;
+border-radius:50%;
+position:absolute;
+top:130px;
+left:28%;
+opacity:0;
+transition:1s;
+}
+
+.metal{
+background:#94a3b8;
+}
+
+.shared{
+background:#a855f7;
+}
+</style>
+<body>
+
+<h1>Chemical Bonding Interactive Animation</h1>
+
+<div class="controls">
+<button onclick="ionicBond()">Ionic Bond</button>
+<button onclick="covalentBond()">Covalent Bond</button>
+<button onclick="metallicBond()">Metallic Bond</button>
+</div>
+
+<div class="scene">
+
+<div id="atom1" class="atom">Na</div>
+<div id="atom2" class="atom">Cl</div>
+<div id="electron" class="electron"></div>
+
+</div>
+
+<p id="info">Click a bonding type to see animation.</p>
+
+<script>
+  let atom1 = document.getElementById("atom1")
+let atom2 = document.getElementById("atom2")
+let electron = document.getElementById("electron")
+let info = document.getElementById("info")
+
+let metallicAnimation = null
+
+function reset(){
+
+if(metallicAnimation){
+clearInterval(metallicAnimation)
+}
+
+electron.style.opacity = "0"
+electron.style.left = "28%"
+
+atom1.style.left = "25%"
+atom2.style.right = "25%"
+
+atom1.className = "atom"
+atom2.className = "atom"
+
+}
+
+function ionicBond(){
+
+reset()
+
+atom1.innerText = "Na"
+atom2.innerText = "Cl"
+
+info.innerText = "Ionic Bond: Sodium transfers an electron to Chlorine."
+
+electron.style.opacity = "1"
+
+setTimeout(()=>{
+electron.style.left = "65%"
+},500)
+
+}
+
+function covalentBond(){
+
+reset()
+
+atom1.innerText = "H"
+atom2.innerText = "H"
+
+atom1.classList.add("shared")
+atom2.classList.add("shared")
+
+info.innerText = "Covalent Bond: Atoms share electrons."
+
+setTimeout(()=>{
+atom1.style.left = "40%"
+atom2.style.right = "40%"
+},300)
+
+}
+
+function metallicBond(){
+
+reset()
+
+atom1.innerText = "Fe"
+atom2.innerText = "Fe"
+
+atom1.classList.add("metal")
+atom2.classList.add("metal")
+
+info.innerText = "Metallic Bond: Electrons move freely between metal atoms."
+
+electron.style.opacity = "1"
+
+let pos = 30
+
+metallicAnimation = setInterval(()=>{
+
+pos += 5
+if(pos > 70){pos = 30}
+
+electron.style.left = pos + "%"
+
+},100)
+
+}
+  function ionicBond(){
+
+reset()
+
+atom1.innerText = "Na"
+atom2.innerText = "Cl"
+
+info.innerHTML = `
+<h2>Ionic Bond</h2>
+
+<p><b>Why atoms bond:</b><br>
+Atoms bond to become more stable by filling their outer electron shell. This follows the Octet Rule.</p>
+
+<p><b>How ionic bonding works:</b><br>
+One atom transfers an electron to another atom.</p>
+
+<p><b>Example:</b><br>
+Sodium (Na) loses 1 electron and becomes Na⁺.<br>
+Chlorine (Cl) gains that electron and becomes Cl⁻.</p>
+
+<p><b>Why they attract:</b><br>
+Opposite charges attract, forming a strong electrostatic bond.</p>
+
+<p><b>Properties:</b></p>
+<ul>
+<li>Forms crystals</li>
+<li>High melting point</li>
+<li>Conducts electricity when dissolved in water</li>
+</ul>
+`
+
+electron.style.opacity = "1"
+
+setTimeout(()=>{
+electron.style.left = "65%"
+},500)
+
+}
+  function covalentBond(){
+
+reset()
+
+atom1.innerText = "H"
+atom2.innerText = "H"
+
+info.innerHTML = `
+<h2>Covalent Bond</h2>
+
+<p><b>Why atoms bond:</b><br>
+Atoms share electrons so both atoms can fill their outer shell.</p>
+
+<p><b>How covalent bonding works:</b><br>
+Instead of transferring electrons, atoms share them.</p>
+
+<p><b>Example molecules:</b></p>
+<ul>
+<li>H₂ (Hydrogen)</li>
+<li>H₂O (Water)</li>
+<li>CO₂ (Carbon dioxide)</li>
+</ul>
+
+<p><b>Properties:</b></p>
+<ul>
+<li>Forms molecules</li>
+<li>Lower melting points</li>
+<li>Poor electrical conductivity</li>
+</ul>
+`
+
+atom1.classList.add("shared")
+atom2.classList.add("shared")
+
+setTimeout(()=>{
+atom1.style.left = "40%"
+atom2.style.right = "40%"
+},300)
+
+}
+  function metallicBond(){
+
+reset()
+
+atom1.innerText = "Fe"
+atom2.innerText = "Fe"
+
+info.innerHTML = `
+<h2>Metallic Bond</h2>
+
+<p><b>Why atoms bond:</b><br>
+Metal atoms release their outer electrons easily.</p>
+
+<p><b>How metallic bonding works:</b><br>
+Electrons become free and move between atoms in a "sea of electrons".</p>
+
+<p><b>Why metals conduct electricity:</b><br>
+Because these free electrons can move throughout the metal.</p>
+
+<p><b>Properties:</b></p>
+<ul>
+<li>Good electrical conductor</li>
+<li>Good heat conductor</li>
+<li>Malleable and ductile</li>
+</ul>
+`
+
+atom1.classList.add("metal")
+atom2.classList.add("metal")
+
+electron.style.opacity = "1"
+
+let pos = 30
+
+metallicAnimation = setInterval(()=>{
+
+pos += 5
+if(pos > 70){pos = 30}
+
+electron.style.left = pos + "%"
+
+},100)
+
+}
+  </script>
+
+</body>
+</html>
